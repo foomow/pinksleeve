@@ -3,10 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:local="clr-namespace:MainUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="Black"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Title="MainWindow" Height="450" Width="1920">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="755"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid x:Name="nav_bar" IsEnabled="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="MAX"/>
+                        <Button Grid.Column="1" Content="Go" Click="Button_Click"/>
+                        <TextBox Grid.Column="2" Background="Black" Foreground="Silver" x:Name="id_field" FontSize="32"></TextBox>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <wv2:WebView2 DefaultBackgroundColor="Black" Name="webView" Width="755" Source="" CoreWebView2InitializationCompleted="webView_CoreWebView2InitializationCompleted" NavigationCompleted="webView_NavigationCompleted"/>
+                </Grid>
+            </Grid>
+        </Grid>
 
+        <Grid Grid.Column="1" Background="DarkOliveGreen">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" x:Name="Time_Label" Foreground="White" FontSize="160" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Row="1" x:Name="Date_Label" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Margin="20,0,0,0" Content="当前任务：" Foreground="White" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+                <Label Grid.Row="2" Margin="270,0,0,0" x:Name="Job_Label" Foreground="White" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2" Background="Olive">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="剩余任务" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListBox Margin="10" Grid.Row="1" Background="Olive" Foreground="White" BorderThickness="0" SelectionChanged="ListBox_SelectionChanged">
+                    <ListBoxItem FontSize="30">验证开发环境API</ListBoxItem>
+                    <ListBoxItem FontSize="30">验证数据中心计算结果</ListBoxItem>
+                    <ListBoxItem FontSize="30">检查规范命名</ListBoxItem>
+                </ListBox>
+            </Grid>
+        </Grid>
     </Grid>
+
 </Window>
