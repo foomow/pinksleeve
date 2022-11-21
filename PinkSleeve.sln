@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainUI", "MainUI\MainUI.csproj", "{5DFFDB2A-6865-45E7-B764-6897CB7C5FBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLib", "DBLib\DBLib.csproj", "{C6C83A07-0B4B-4FF4-9181-539A0D7E1522}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5DFFDB2A-6865-45E7-B764-6897CB7C5FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFFDB2A-6865-45E7-B764-6897CB7C5FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFFDB2A-6865-45E7-B764-6897CB7C5FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C83A07-0B4B-4FF4-9181-539A0D7E1522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C83A07-0B4B-4FF4-9181-539A0D7E1522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C83A07-0B4B-4FF4-9181-539A0D7E1522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C83A07-0B4B-4FF4-9181-539A0D7E1522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

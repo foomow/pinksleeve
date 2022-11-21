@@ -1,8 +1,11 @@
-﻿using Microsoft.Web.WebView2.Core;
+﻿using DBLib;
+
+using Microsoft.Web.WebView2.Core;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,6 +27,7 @@ namespace MainUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MongoService mongoService;
         string page = @"
 <!DOCTYPE html>
 <html>
@@ -38,12 +42,26 @@ namespace MainUI
         public MainWindow()
         {
             InitializeComponent();
+            MissionListBox.Items.Clear();
             webView.EnsureCoreWebView2Async();
             DispatcherTimer timer = new DispatcherTimer
             {
                 Interval = new TimeSpan(0, 0, 0, 0, 100)
             };
             timer.Tick += Timer_Tick;
+
+            mongoService = new MongoService();
+            var missions = mongoService.ListRootMissons();
+            foreach (var item in missions)
+            {
+                MissionListBox.Items.Add(new ListBoxItem()
+                {
+                    FontSize = 30,
+                    Tag = item.ID,
+                    Content = item.Title
+                });
+
+            }
             timer.Start();
         }
 
@@ -74,8 +92,13 @@ namespace MainUI
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Job_Label.Content = ((ListBoxItem)((ListBox)sender).SelectedItem).Content;
-            Job_Label.ToolTip = Job_Label.Content;
+            ListBoxItem item = (ListBoxItem)((ListBox)sender).SelectedItem;
+            if (item != null && item.Tag != null)
+            {
+                Mission mission = mongoService.GetMission(item.Tag.ToString());
+                Job_Label.Content = mission.Title;
+                Job_Label.ToolTip = mission.Brief;
+            }
         }
     }
 }
